@@ -1,3 +1,5 @@
+[![Build Status](http://hoederer-jenkins.westeurope.cloudapp.azure.com/buildStatus/icon?job=aci-helloworld%2Fmaster)](http://hoederer-jenkins.westeurope.cloudapp.azure.com/job/aci-helloworld/job/master/)
+
 # Azure Container Instances Hello World
 
 This sample is a very simple NodeJS application used to demonstrate [Azure Container Instances](https://azure.microsoft.com/services/container-instances/).
