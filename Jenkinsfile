@@ -6,6 +6,8 @@ pipeline {
         DOCKER_REPO_NAME = 'aci-helloworld'
         DOCKER_IMAGE = ''
         DOCKER_REGISTRY_CREDENTIAL_ID = 'hoedereracr.azurecr.io'
+        AZURE_STORAGE_CREDENTIAL_ID = 'hoederermonitortest'
+        AZURE_STORAGE_CONTAINER_NAME = 'jenkinslogs'
     }
 
     stages {
@@ -21,6 +23,9 @@ pipeline {
             }
 
             steps {
+
+                echo "$JENKINS_HOME"
+                echo "$JOB_NAME"
 
                 echo "Building Docker image for $BRANCH_NAME"
                 script {
@@ -63,5 +68,26 @@ pipeline {
             }
             
         }
-    }    
+    }
+
+    // post {
+
+    //     echo "Uploading build logs ..."
+
+    //     azureUpload blobProperties: [
+    //             cacheControl: '', 
+    //             contentEncoding: '', 
+    //             contentLanguage: '', 
+    //             contentType: '', 
+    //             detectContentType: true
+    //         ], 
+    //         containerName: AZURE_STORAGE_CONTAINER_NAME, 
+    //         fileShareName: '', 
+    //         filesPath: ANDROID_RELEASE_APK,
+    //         storageCredentialId: AZURE_STORAGE_CREDENTIAL_ID, 
+    //         storageType: 'blobstorage', 
+    //         uploadArtifactsOnlyIfSuccessful: false,
+    //         virtualPath: ${BUILD\_ID}/${BUILD\_NUMBER}
+
+    // }    
 }
