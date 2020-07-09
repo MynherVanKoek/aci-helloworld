@@ -28,7 +28,7 @@ pipeline {
                 echo "$JOB_NAME"
 
                 sh 'set | grep -i build'
-                sh 'set | grep -i item'
+                sh 'set'
                 sh 'pwd'
                 
                 echo "Building Docker image for $BRANCH_NAME"
