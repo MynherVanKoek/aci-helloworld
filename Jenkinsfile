@@ -27,8 +27,10 @@ pipeline {
                 echo "$JENKINS_HOME"
                 echo "$JOB_NAME"
 
-                echo "$(set | grep -i build)"
-                
+                script {
+                    set | grep -i build
+                }
+
                 echo "Building Docker image for $BRANCH_NAME"
                 script {
                     DOCKER_IMAGE = docker.build "${DOCKER_LOGIN_SERVER}/${DOCKER_REPO_NAME}:${DOCKER_TAG_NAME}"
