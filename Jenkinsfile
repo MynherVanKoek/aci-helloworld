@@ -93,7 +93,7 @@ pipeline {
             storageCredentialId: AZURE_STORAGE_CREDENTIAL_ID, 
             storageType: 'blobstorage', 
             uploadArtifactsOnlyIfSuccessful: false,
-            virtualPath: ${BUILD\_ID}/${BUILD\_NUMBER}
+            virtualPath: ${BUILD_ID}/${BUILD_NUMBER}
 
     }    
 }
