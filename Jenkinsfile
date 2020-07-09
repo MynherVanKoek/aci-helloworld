@@ -78,7 +78,7 @@ pipeline {
 
         always{
 
-            sh "cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log ${pwd}/log"
+            sh "cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log ${WORKSPACE}/log"
 
             echo "Uploading build logs ..."
 
@@ -91,7 +91,7 @@ pipeline {
                 ], 
                 containerName: AZURE_STORAGE_CONTAINER_NAME, 
                 fileShareName: '', 
-                filesPath: ANDROID_RELEASE_APK,
+                filesPath: 'log',
                 storageCredentialId: AZURE_STORAGE_CREDENTIAL_ID, 
                 storageType: 'blobstorage', 
                 uploadArtifactsOnlyIfSuccessful: false,
