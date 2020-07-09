@@ -74,24 +74,26 @@ pipeline {
         }
     }
 
-    // post {
+    post {
 
-    //     echo "Uploading build logs ..."
+        sh 'cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log pwd/log'
 
-    //     azureUpload blobProperties: [
-    //             cacheControl: '', 
-    //             contentEncoding: '', 
-    //             contentLanguage: '', 
-    //             contentType: '', 
-    //             detectContentType: true
-    //         ], 
-    //         containerName: AZURE_STORAGE_CONTAINER_NAME, 
-    //         fileShareName: '', 
-    //         filesPath: ANDROID_RELEASE_APK,
-    //         storageCredentialId: AZURE_STORAGE_CREDENTIAL_ID, 
-    //         storageType: 'blobstorage', 
-    //         uploadArtifactsOnlyIfSuccessful: false,
-    //         virtualPath: ${BUILD\_ID}/${BUILD\_NUMBER}
+        echo "Uploading build logs ..."
 
-    // }    
+        azureUpload blobProperties: [
+                cacheControl: '', 
+                contentEncoding: '', 
+                contentLanguage: '', 
+                contentType: '', 
+                detectContentType: true
+            ], 
+            containerName: AZURE_STORAGE_CONTAINER_NAME, 
+            fileShareName: '', 
+            filesPath: ANDROID_RELEASE_APK,
+            storageCredentialId: AZURE_STORAGE_CREDENTIAL_ID, 
+            storageType: 'blobstorage', 
+            uploadArtifactsOnlyIfSuccessful: false,
+            virtualPath: ${BUILD\_ID}/${BUILD\_NUMBER}
+
+    }    
 }
