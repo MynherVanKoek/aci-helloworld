@@ -27,9 +27,9 @@ pipeline {
                 echo "$JENKINS_HOME"
                 echo "$JOB_NAME"
 
-                sh 'set | grep -i build'
-                sh 'set'
-                sh 'pwd'
+                sh "set | grep -i build"
+                sh "set"
+                sh "pwd"
                 
                 echo "Building Docker image for $BRANCH_NAME"
                 script {
@@ -78,7 +78,7 @@ pipeline {
 
         always{
 
-            sh 'cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log pwd/log'
+            sh "cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log pwd/log"
 
             echo "Uploading build logs ..."
 
@@ -95,7 +95,7 @@ pipeline {
                 storageCredentialId: AZURE_STORAGE_CREDENTIAL_ID, 
                 storageType: 'blobstorage', 
                 uploadArtifactsOnlyIfSuccessful: false,
-                virtualPath: ${BUILD_ID}/${BUILD_NUMBER}
+                virtualPath: "${BUILD_ID}/${BUILD_NUMBER}"
 
         }
     }    
