@@ -78,7 +78,7 @@ pipeline {
 
         always{
 
-            sh "cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log pwd/log"
+            sh "cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log ${pwd}/log"
 
             echo "Uploading build logs ..."
 
