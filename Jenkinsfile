@@ -109,7 +109,7 @@ pipeline {
             cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep -v "\\[8mha" > ${WORKSPACE}/log
             """
 
-            sh "logger ${WORKSPACE}/log"
+            sh "logger -f ${WORKSPACE}/log"
 
             echo "Uploading build logs ..."
 
