@@ -80,10 +80,15 @@ pipeline {
 
         always{
 
-            echo "${currentBuild.rawBuild.getLogInputStream()}"
+            // echo "${currentBuild.rawBuild.getLogInputStream()}"
+            echo "${currentBuild.rawBuild.getLogText()}"
+
+            // sh """
+            // cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
+            // """
 
             sh """
-            cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
+            cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep -v '\[8mha' > ${WORKSPACE}/log
             """
 
             echo "Uploading build logs ..."
