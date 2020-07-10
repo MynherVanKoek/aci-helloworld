@@ -104,10 +104,7 @@ pipeline {
             // """
 
             sh """
-            rm -f ${WORKSPACE}/log & \\
-              cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | \\
-              grep -v "\\[8mha" | \\
-              grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
+            rm -f ${WORKSPACE}/log && cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep -v "\\[8mha" | grep "[0-9]:[0-9][0-9]:[0-9][0-9]" > ${WORKSPACE}/log
             """
 
             echo "Uploading build logs ..."
