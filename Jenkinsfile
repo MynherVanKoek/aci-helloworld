@@ -80,7 +80,11 @@ pipeline {
 
         always{
 
-            sh "cp ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log ${WORKSPACE}/log"
+            echo "${currentBuild.rawBuild.getLogInputStream()}"
+
+            sh """
+            cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
+            """
 
             echo "Uploading build logs ..."
 
