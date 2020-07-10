@@ -72,8 +72,24 @@ pipeline {
             steps {
                 echo "TBD: Deploy Docker container"
             }
-            
+
         }
+        
+        // stage('save log build') {
+
+        //     steps {
+        //         script {
+        //             def logContent = Jenkins.getInstance()
+        //                 .getItemByFullName(env.JOB_NAME)
+        //                 .getBuildByNumber(
+        //                     Integer.parseInt(env.BUILD_NUMBER))
+        //                 .logFile.text
+        //             // copy the log in the job's own workspace
+        //             writeFile file: "buildlog.txt", text: logContent
+        //         }
+        //     }
+            
+        // }
     }
 
     post {
@@ -81,14 +97,17 @@ pipeline {
         always{
 
             // echo "${currentBuild.rawBuild.getLogInputStream()}"
-            echo "${currentBuild.rawBuild.getLogText()}"
+            // echo "${currentBuild.rawBuild.getLogText()}"
 
             // sh """
             // cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
             // """
 
             sh """
-            cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep -v "\\[8mha" > ${WORKSPACE}/log
+            rm ${WORKSPACE}/log & \\
+              cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | \\
+              grep -v "\\[8mha" | \\
+              grep > '[0-9]:[0-9][0-9]:[0-9][0-9]' ${WORKSPACE}/log
             """
 
             echo "Uploading build logs ..."
