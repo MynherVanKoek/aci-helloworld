@@ -10,6 +10,8 @@ pipeline {
         AZURE_STORAGE_CONTAINER_NAME = 'jenkinslogs'
     }
 
+    options { timestamps () }
+
     stages {
 
         stage('Build: master')  {
