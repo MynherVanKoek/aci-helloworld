@@ -10,7 +10,7 @@ pipeline {
         AZURE_STORAGE_CONTAINER_NAME = 'jenkinslogs'
     }
 
-    options { timestamps () }
+    // options { timestamps () }
 
     stages {
 
@@ -103,9 +103,13 @@ pipeline {
             // cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
             // """
 
+            sh "rm -f ${WORKSPACE}/log"
+
             sh """
-            rm -f ${WORKSPACE}/log && cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep -v "\\[8mha" | grep "[0-9]:[0-9][0-9]:[0-9][0-9]" > ${WORKSPACE}/log
+            cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | grep -v "\\[8mha" > ${WORKSPACE}/log
             """
+
+            sh "logger ${WORKSPACE}/log"
 
             echo "Uploading build logs ..."
 
