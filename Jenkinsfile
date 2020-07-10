@@ -104,10 +104,10 @@ pipeline {
             // """
 
             sh """
-            rm ${WORKSPACE}/log || no_log_file_in_ws=true & \\
+            rm -f ${WORKSPACE}/log & \\
               cat ${JENKINS_HOME}/jobs/aci-helloworld/branches/master/builds/${BUILD_NUMBER}/log | \\
               grep -v "\\[8mha" | \\
-              grep > '[0-9]:[0-9][0-9]:[0-9][0-9]' ${WORKSPACE}/log
+              grep '[0-9]:[0-9][0-9]:[0-9][0-9]' > ${WORKSPACE}/log
             """
 
             echo "Uploading build logs ..."
