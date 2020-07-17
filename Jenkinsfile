@@ -14,6 +14,17 @@ pipeline {
 
     stages {
 
+        stage('Lint') {
+
+            steps{
+
+                sh "eslint -f checkstyle -o ./testresult.xml ."
+                recordIssues tool: esLint(pattern: '**/testresult.xml')
+
+            }
+
+        }
+
         stage('Build: master')  {
 
             when {
@@ -26,12 +37,12 @@ pipeline {
 
             steps {
 
-                echo "$JENKINS_HOME"
-                echo "$JOB_NAME"
+                // echo "$JENKINS_HOME"
+                // echo "$JOB_NAME"
 
-                sh "set | grep -i build"
-                sh "set"
-                sh "pwd"
+                // sh "set | grep -i build"
+                // sh "set"
+                // sh "pwd"
                 
                 echo "Building Docker image for $BRANCH_NAME"
                 script {
