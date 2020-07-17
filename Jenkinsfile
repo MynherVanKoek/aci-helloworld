@@ -18,6 +18,7 @@ pipeline {
 
             steps{
 
+                sh "npm --prefix ./app i"
                 sh "npm --prefix ./app run lint"
                 recordIssues enabledForFailure: true, tools: esLint(pattern: '**/testresult.xml')
 
