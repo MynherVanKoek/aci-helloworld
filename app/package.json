@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint -f checkstyle -o ../testresult.xml ."
+    "lint": "eslint -f checkstyle -o ./testresult.xml ."
   },
   "dependencies": {
     "express": "^4.14.0",
