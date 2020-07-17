@@ -19,7 +19,7 @@ pipeline {
             steps{
 
                 sh "eslint -f checkstyle -o ./testresult.xml ."
-                recordIssues tool: esLint(pattern: '**/testresult.xml')
+                recordIssues enabledForFailure: true, tool: esLint(pattern: '**/testresult.xml')
 
             }
 
