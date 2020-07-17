@@ -18,7 +18,6 @@ pipeline {
 
             steps{
 
-                sh "cd app"
                 sh "npm run lint"
                 recordIssues enabledForFailure: true, tools: esLint(pattern: '**/testresult.xml')
 
