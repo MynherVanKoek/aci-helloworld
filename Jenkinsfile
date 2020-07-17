@@ -18,7 +18,7 @@ pipeline {
 
             steps{
 
-                sh "eslint -f checkstyle -o ./testresult.xml ."
+                sh "npm run lint"
                 recordIssues enabledForFailure: true, tools: esLint(pattern: '**/testresult.xml')
 
             }
